@@ -1,0 +1,58 @@
+# .github/workflows/ci.yml
+
+name: Continuous Integration
+
+# Chạy workflow này mỗi khi có push lên nhánh main
+# Hoặc khi có Pull Request được tạo
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Job để kiểm tra Frontend
+  check-frontend:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Ubuntu mới nhất
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Tải code từ repo về
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Sử dụng Node.js phiên bản 20
+
+      - name: Install Frontend Dependencies
+        # Di chuyển vào thư mục frontend và chạy npm install
+        run: cd frontend && npm install
+
+      - name: Build Frontend
+        # Chạy lệnh build để kiểm tra xem có lỗi biên dịch không
+        run: cd frontend && npm run build
+
+  # Job để kiểm tra Backend
+  check-backend:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Ubuntu mới nhất
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Tải code từ repo về
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22" # Sử dụng Go phiên bản 1.22
+
+      - name: Check Backend Code Formatting
+        # Di chuyển vào thư mục backend và kiểm tra format
+        run: cd backend && go fmt ./...
+
+      - name: Vet Backend Code
+        # Chạy go vet để tìm các lỗi tiềm ẩn
+        run: cd backend && go vet ./...
+
+      # Nếu bạn có unit test, hãy thêm bước này
+      # - name: Test Backend
+      #   run: cd backend && go test ./...
