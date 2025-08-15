@@ -1,0 +1,72 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+}
+
+.App-header {
+  background-color: #ff6b35;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.food-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+}
+
+.food-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.food-content {
+  padding: 15px;
+}
+
+.food-content h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.food-region {
+    font-size: 0.9em;
+    color: #555;
+    font-weight: normal;
+}
+
+.food-description {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.food-price {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 1.2em;
+}
