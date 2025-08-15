@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // URL của Backend API, bạn sẽ thay thế bằng IP của VM sau này
-const API_URL = 'http://YOUR_GCP_VM_IP:8080/api/foods';
+const API_URL = `${process.env.REACT_APP_API_URL}/api/foods` || 'https://food-landing.onrender.com/api/foods';
 
 function FoodCard({ food }) {
   return (
